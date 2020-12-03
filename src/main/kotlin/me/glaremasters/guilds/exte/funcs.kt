@@ -1,3 +1,4 @@
+@file:JvmName("Extentions")
 /*
  * MIT License
  *

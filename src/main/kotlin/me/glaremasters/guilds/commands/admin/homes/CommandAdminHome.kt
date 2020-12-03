@@ -66,7 +66,7 @@ internal class CommandAdminHome : BaseCommand() {
     @Syntax("<%syntax>")
     fun home(player: Player, @Flags("other") @Values("@guilds") guild: Guild) {
         val home = guild.home ?: throw ExpectationNotMet(Messages.HOME__NO_HOME_SET)
-        player.teleport(home.asLocation)
+        player.teleport(home.asLocation())
         currentCommandIssuer.sendInfo(Messages.ADMIN__HOME, "{guild}", guild.name)
     }
 

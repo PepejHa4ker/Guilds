@@ -49,7 +49,7 @@ class InfoGUI(private val guilds: Guilds, private val settingsManager: SettingsM
 
     fun get(guild: Guild, player: Player): Gui {
         val name = settingsManager.getProperty(GuildInfoSettings.GUI_NAME).replace("{name}", guild.name).replace("{prefix}", guild.prefix)
-        val gui = GuiBuilder(guilds).setName(name).setRows(3).disableGlobalClicking().build()
+        val gui = GuiBuilder().setName(name).setRows(3).disableGlobalClicking().build()
 
         addItems(gui, guild, player)
         addBackground(gui)
@@ -61,7 +61,7 @@ class InfoGUI(private val guilds: Guilds, private val settingsManager: SettingsM
 
         val statusMaterial = if (guild.isPrivate) settingsManager.getProperty(GuildInfoSettings.STATUS_MATERIAL_PRIVATE) else settingsManager.getProperty(GuildInfoSettings.STATUS_MATERIAL_PUBLIC)
         val statusString = if (guild.isPrivate) settingsManager.getProperty(GuildInfoSettings.STATUS_PRIVATE) else settingsManager.getProperty(GuildInfoSettings.STATUS_PUBLIC)
-        val home = if (guild.home == null) settingsManager.getProperty(GuildInfoSettings.HOME_EMPTY) else ACFBukkitUtil.blockLocationToString(guild.home.asLocation)
+        val home = if (guild.home == null) settingsManager.getProperty(GuildInfoSettings.HOME_EMPTY) else ACFBukkitUtil.blockLocationToString(guild.home.asLocation())
         val motd = if (guild.motd == null) "" else guild.motd
 
         generateItem(gui, settingsManager.getProperty(GuildInfoSettings.TIER_DISPLAY), settingsManager.getProperty(GuildInfoSettings.TIER_MATERIAL), settingsManager.getProperty(GuildInfoSettings.TIER_NAME), settingsManager.getProperty(GuildInfoSettings.TIER_LORE).map { l -> l.replace("{tier}", tier.name) }, 2, 3)
@@ -116,7 +116,7 @@ class InfoGUI(private val guilds: Guilds, private val settingsManager: SettingsM
                 manager.getCommandIssuer(player).sendInfo(Messages.HOME__NO_HOME_SET)
                 return@setAction
             }
-            val teleportingTo = guild.home.asLocation
+            val teleportingTo = guild.home.asLocation()
             if (settingsManager.getProperty(CooldownSettings.WU_HOME_ENABLED)) {
                 val initial = player.location
                 val delay = settingsManager.getProperty(CooldownSettings.WU_HOME)

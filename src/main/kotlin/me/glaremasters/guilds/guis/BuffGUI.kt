@@ -69,12 +69,12 @@ class BuffGUI(private val guilds: Guilds, private val buffConfig: SettingsManage
 
         val next = GuiItem(GuiUtils.createItem(nav.next.material, nav.next.name, emptyList()))
         next.setAction {
-            gui.nextPage()
+            gui.next()
         }
 
         val back = GuiItem(GuiUtils.createItem(nav.previous.material, nav.previous.name, emptyList()))
         back.setAction {
-            gui.prevPage()
+            gui.next()
         }
 
         gui.setItem(6, 9, next)

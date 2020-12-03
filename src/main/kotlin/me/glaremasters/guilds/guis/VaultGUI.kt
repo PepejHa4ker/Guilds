@@ -42,7 +42,7 @@ class VaultGUI(private val guilds: Guilds, private val settingsManager: Settings
     fun get(guild: Guild, player: Player): Gui {
         val name = settingsManager.getProperty(VaultPickerSettings.GUI_NAME).replace("{name}", guild.name)
         val rows = settingsManager.getProperty(VaultPickerSettings.GUI_SIZE)
-        val gui = GuiBuilder(guilds).setName(name).setRows(rows).disableGlobalClicking().build()
+        val gui = GuiBuilder().setName(name).setRows(rows).disableGlobalClicking().build()
 
         // Prevent players from being able to items into the GUIs
         gui.setOutsideClickAction { event ->

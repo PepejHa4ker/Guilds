@@ -48,7 +48,6 @@ public final class StringUtils {
     /**
      * Get the announcements for the plugin
      * @return announcements
-     * @throws IOException
      */
     public static String getAnnouncements(JavaPlugin plugin) throws IOException {
         String announcement;

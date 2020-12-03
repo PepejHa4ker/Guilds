@@ -1,8 +1,6 @@
 package me.glaremasters.guilds.guild
 
-class GuildScore {
-    var wins = 0
-    var loses = 0
+data class GuildScore(var wins: Int = 0,var loses: Int = 0 ) {
 
     fun addWin() {
         wins += 1

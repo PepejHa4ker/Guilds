@@ -61,12 +61,12 @@ class ListGUI(private val guilds: Guilds, private val settingsManager: SettingsM
     private fun createButtons(gui: PaginatedGui) {
         val next = GuiItem(GuiUtils.createItem(settingsManager.getProperty(GuildListSettings.GUILD_LIST_NEXT_PAGE_ITEM), settingsManager.getProperty(GuildListSettings.GUILD_LIST_NEXT_PAGE_ITEM_NAME), emptyList()))
         next.setAction {
-            gui.nextPage()
+            gui.next()
         }
 
         val back = GuiItem(GuiUtils.createItem(settingsManager.getProperty(GuildListSettings.GUILD_LIST_PREVIOUS_PAGE_ITEM), settingsManager.getProperty(GuildListSettings.GUILD_LIST_PREVIOUS_PAGE_ITEM_NAME), emptyList()))
         back.setAction {
-            gui.prevPage()
+            gui.previous()
         }
 
         gui.setItem(6, 9, next)
@@ -144,7 +144,7 @@ class ListGUI(private val guilds: Guilds, private val settingsManager: SettingsM
             updated.add(StringUtils.color(line
                     .replace("{guild-name}", guild.name)
                     .replace("{guild-prefix}", guild.prefix)
-                    .replace("{guild-master}", guild.guildMaster.asOfflinePlayer.name.toString())
+                    .replace("{guild-master}", guild.guildMaster.asOfflinePlayer().name.toString())
                     .replace("{guild-status}", status)
                     .replace("{guild-tier}", tier)
                     .replace("{guild-balance}", EconomyUtils.format(guild.balance))

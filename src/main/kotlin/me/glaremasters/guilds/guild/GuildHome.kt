@@ -10,6 +10,6 @@ import org.bukkit.Location
  */
 class GuildHome(private val world: String, private val x: Double, private val y: Double, private val z: Double, private val yaw: Float, private val pitch: Float) {
 
-    val asLocation: Location
-        get() = Location(Bukkit.getWorld(world), x, y, z, yaw, pitch)
+    fun asLocation() = Location(Bukkit.getWorld(world), x, y, z, yaw, pitch)
+
 }

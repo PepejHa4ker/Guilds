@@ -122,7 +122,7 @@ public class GuildHandler {
                     member.setRole(role);
                 } else {
                     member.setRole(getLowestGuildRole());
-                    LoggingUtils.severe("The player (" + member.getName() + ") had a role level that doesn't exist on the server anymore. To prevent issues, they've been automatically set the the lowest role level on the server.");
+                    LoggingUtils.severe("The player (" + member.name() + ") had a role level that doesn't exist on the server anymore. To prevent issues, they've been automatically set the the lowest role level on the server.");
                 }
             }
         }
@@ -675,7 +675,7 @@ public class GuildHandler {
      */
     public List<Player> getOnlineInviters(Guild guild) {
         List<GuildMember> members = guild.getOnlineMembers().stream().filter(m -> m.getRole().hasPerm(GuildRolePerm.INVITE)).collect(Collectors.toList());
-        return members.stream().map(GuildMember::getAsPlayer).collect(Collectors.toList());
+        return members.stream().map(GuildMember::asPlayer).collect(Collectors.toList());
     }
 
     /**

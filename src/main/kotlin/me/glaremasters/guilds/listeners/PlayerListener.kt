@@ -134,6 +134,6 @@ class PlayerListener(private val guilds: Guilds, private val settingsManager: Se
             return
         }
 
-        respawnLocation = home.asLocation
+        respawnLocation = home.asLocation()
     }
 }

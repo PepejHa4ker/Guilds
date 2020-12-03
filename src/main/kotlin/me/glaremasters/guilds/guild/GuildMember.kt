@@ -9,15 +9,12 @@ class GuildMember(val uuid: UUID, var role: GuildRole) {
     var joinDate: Long = 0
     var lastLogin: Long = 0
 
-    val isOnline: Boolean
-        get() = asOfflinePlayer.isOnline
+    fun isOnline() = asOfflinePlayer().isOnline
 
-    val asOfflinePlayer: OfflinePlayer
-        get() = Bukkit.getOfflinePlayer(uuid)
+    fun asOfflinePlayer() = Bukkit.getOfflinePlayer(uuid)
 
-    val asPlayer: Player?
-        get() = Bukkit.getPlayer(uuid)
+    fun asPlayer() = Bukkit.getPlayer(uuid)
 
-    val name: String?
-        get() = asOfflinePlayer.name
+    fun name() = asOfflinePlayer().name
+
 }

@@ -94,12 +94,12 @@ internal class CommandHome : BaseCommand() {
                 if (loc.distance(curr) > 1) {
                     guilds.commandManager.getCommandIssuer(player).sendInfo(Messages.HOME__CANCELLED)
                 } else {
-                    player.teleport(home.asLocation)
+                    player.teleport(home.asLocation())
                     guilds.commandManager.getCommandIssuer(player).sendInfo(Messages.HOME__TELEPORTED)
                 }
             }.execute()
         } else {
-            player.teleport(home.asLocation)
+            player.teleport(home.asLocation())
             currentCommandIssuer.sendInfo(Messages.HOME__TELEPORTED)
         }
     }

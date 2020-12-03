@@ -63,7 +63,7 @@ class PlaceholderAPI(private val guildHandler: GuildHandler) : PlaceholderExpans
         return when (arg.toLowerCase()) {
             "id" -> guild.id.toString()
             "name" -> guild.name
-            "master" -> guild.guildMaster.asOfflinePlayer.name.toString()
+            "master" -> guild.guildMaster.asOfflinePlayer().name.toString()
             "member_count" -> guild.members.size.toString()
             "prefix" -> guild.prefix
             "members_online" -> guild.onlineMembers.size.toString()

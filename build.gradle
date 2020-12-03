@@ -86,6 +86,9 @@ dependencies {
     // Configuration Lib
     implementation("ch.jalu:configme:1.2.0")
 
+    // Lombok framework
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
     // Serializing Inventories via JSON
     implementation("com.dumptruckman.minecraft:JsonConfiguration:1.1")
 
@@ -126,12 +129,6 @@ sourceSets {
     test.runtimeClasspath += configurations.compileOnly
 }
 
-compileJava {
-    options.compilerArgs += ["-parameters"]
-    options.fork = true
-    options.forkOptions.executable = 'javac'
-}
-
 compileKotlin {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
     kotlinOptions.javaParameters = true
@@ -140,34 +137,9 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
 }
 
-publishing {
-    repositories {
-        maven {
-            name 'glare'
-            url "https://repo.glaremasters.me/repository/guilds/"
-            credentials {
-                username guildUser
-                password guildPass
-            }
-        }
-    }
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-import org.apache.tools.ant.filters.ReplaceTokens
 
-processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
-    }
-}
-
-shadowJar.dependsOn project.tasks.getByName('pdm')

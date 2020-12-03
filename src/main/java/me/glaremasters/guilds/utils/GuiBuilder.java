@@ -32,8 +32,8 @@ import org.jetbrains.annotations.NotNull;
 public class GuiBuilder {
     private final Gui gui;
 
-    public GuiBuilder(Plugin plugin) {
-        this.gui = new Gui(plugin, 1, "");
+    public GuiBuilder() {
+        this.gui = new Gui(1, "");
     }
 
     @NotNull

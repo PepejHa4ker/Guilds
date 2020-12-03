@@ -46,7 +46,7 @@ class MembersGUI(private val guilds: Guilds, private val settingsManager: Settin
 
     fun get(guild: Guild, player: Player): Gui {
         val name = settingsManager.getProperty(GuildInfoMemberSettings.GUI_NAME).replace("{name}", guild.name)
-        val gui = GuiBuilder(guilds).setName(name).setRows(6).disableGlobalClicking().build()
+        val gui = GuiBuilder().setName(name).setRows(6).disableGlobalClicking().build()
 
         gui.setOutsideClickAction { event ->
             event.isCancelled = true
@@ -63,7 +63,6 @@ class MembersGUI(private val guilds: Guilds, private val settingsManager: Settin
     /**
      * Create the regular items that will be on the GUI
      *
-     * @param pane the pane to be added to
      * @param guild the guild of the player
      */
     private fun addItems(gui: Gui, guild: Guild, player: Player) {
@@ -80,15 +79,15 @@ class MembersGUI(private val guilds: Guilds, private val settingsManager: Settin
         val lore = settingsManager.getProperty(GuildInfoMemberSettings.MEMBERS_LORE)
 
         members.forEach { member ->
-            val online = if (member.isOnline) {
-                val user = member.asPlayer
+            val online = if (member.isOnline()) {
+                val user = member.asPlayer()
                 user != null && player.canSee(user)
             } else {
                 false
             }
             val status = if (online) settingsManager.getProperty(GuildInfoMemberSettings.MEMBERS_ONLINE) else settingsManager.getProperty(GuildInfoMemberSettings.MEMBERS_OFFLINE)
             val role = guildHandler.getGuildRole(member.role.level)
-            val name = member.name
+            val name = member.name()
             val updated = mutableListOf<String>()
 
             lore.forEach { line ->

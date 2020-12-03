@@ -362,7 +362,7 @@ public class Guild {
      * @return list of players
      */
     public List<OfflinePlayer> getAllAsPlayers() {
-        return members.stream().map(GuildMember::getAsOfflinePlayer).collect(Collectors.toList());
+        return members.stream().map(GuildMember::asOfflinePlayer).collect(Collectors.toList());
     }
 
     /**
@@ -650,7 +650,7 @@ public class Guild {
 
     public GuildScore getGuildScore() {
         if (this.guildScore == null) {
-            this.guildScore = new GuildScore();
+            this.guildScore = new  GuildScore();
         }
         return this.guildScore;
     }
@@ -696,22 +696,22 @@ public class Guild {
         GuildBuilder() {
         }
 
-        public Guild.GuildBuilder id(UUID id) {
+        public GuildBuilder id(UUID id) {
             this.id = id;
             return this;
         }
 
-        public Guild.GuildBuilder name(String name) {
+        public GuildBuilder name(String name) {
             this.name = name;
             return this;
         }
 
-        public Guild.GuildBuilder prefix(String prefix) {
+        public GuildBuilder prefix(String prefix) {
             this.prefix = prefix;
             return this;
         }
 
-        public Guild.GuildBuilder motd(String motd) {
+        public GuildBuilder motd(String motd) {
             this.motd = motd;
             return this;
         }
